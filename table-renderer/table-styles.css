@@ -1,21 +1,26 @@
 .bd-table {
-  background-color: light-blue;
-  border-collapse: collapse;
-  width: 100%;
+    background-color: light-blue;
+    border-collapse: collapse;
+    width: 100%;
 }
+
 .bd-table, tr, th, td {
-  border: 1px solid white;
+    border: 1px solid white;
 }
+
 .bd-table thead {
     background-color: #04415a;
     color: white;
 }
+
 .bd-table tbody tr:nth-child(odd) {
     background-color: #FFE4C4;
 }
+
 .bd-table tbody tr:nth-child(even) {
     background-color: #F5F5DC;
 }
+
 .bd-table td {
-  padding: 4px;
+    padding: 4px;
 }

@@ -1,22 +1,30 @@
 $(document).ready(function() {
-  console.log('Loading JSON of table view: #PARAM=tableViewId#');
+  console.log(new Date().toLocaleString() + ': Loading JSON of table view: #PARAM=tableViewId#');
+  var containerDiv = document.getElementById("bd-table-container");
+  containerDiv.appendChild(document.createTextNode("Loading ..."));
 
   $.ajax({
     url: "/en/bi/report/api:viewDetail/#PARAM=tableViewId#",
     success: function(response) {
-      console.log(response.data);
+      console.log(new Date().toLocaleString() + ': JSON received. Rendering table ...');
+      var data = response.data;
+
+      $("#bd-table-container").empty();
+      var containerDiv = document.getElementById("bd-table-container");
+      containerDiv.appendChild(document.createTextNode("Rendering ..."));
       
       // create TABLE element and set CSS class
+      $("#bd-table-container").empty();
       var containerDiv = document.getElementById("bd-table-container");
       var table = document.createElement('table');
-      table.setAttribute('class', 'gg-table');
+      table.setAttribute('class', 'bd-table');
       containerDiv.appendChild(table);
                          
       // create THEAD inside TABLE
       var thead = table.createTHead();
       
       // iterate over all rows in header
-      console.log('Rendering THEAD with ' + data.header.length + ' rows ...');
+      console.log(new Date().toLocaleString() + ': Rendering THEAD with ' + data.header.length + ' rows ...');
       var theadRowIndex = 0;
       for (i = 0; i < data.header.length; i++) {
       
@@ -30,9 +38,11 @@ $(document).ready(function() {
           var column = columns[j];
           if (column && (typeof column.value != 'undefined') && (typeof column.i != 'undefined')) {
           
-            // insert new cell with value and colspan/rowspan attributes
+            // insert new cell with value
             var theadCell = theadRow.insertCell(theadCellIndex++);
             theadCell.appendChild(document.createTextNode(column.value));
+
+            // set colspan/rowspan attributes
             if (typeof column.colspan != 'undefined') {
               theadCell.setAttribute('colspan', column.colspan);
             }
@@ -48,7 +58,7 @@ $(document).ready(function() {
       var tbody = table.createTBody();
       
       // iterate over all rows in body
-      console.log('Rendering TBODY with ' + data.body.length + ' rows ...');
+      console.log(new Date().toLocaleString() + ': Rendering TBODY with ' + data.body.length + ' rows ...');
       var tbodyRowIndex = 0;
       for (i = 0; i < data.body.length; i++) {
         
@@ -62,9 +72,15 @@ $(document).ready(function() {
           var column = columns[j];
           if (column && (typeof column.value != 'undefined') && (typeof column.i != 'undefined')) {
             
-            // insert new cell with value and colspan/rowspan attributes
+            // insert new cell
             var tbodyCell = tbodyRow.insertCell(tbodyCellIndex++);
-            tbodyCell.appendChild(document.createTextNode(column.value));
+
+            // escape and set value (it contains links based on drilldown or appearence settings)
+            var value = column.value;
+            var escapedValue = value.indexOf(">") > -1 ? value.substring(value.lastIndexOf(">") + 1) : value;
+            tbodyCell.appendChild(document.createTextNode(escapedValue));
+
+            // set colspan/rowspan attributes
             if (typeof column.colspan != 'undefined') {
               tbodyCell.setAttribute('colspan', column.colspan);
             }
@@ -75,5 +91,9 @@ $(document).ready(function() {
           }
         }
       }
+      
+      console.log(new Date().toLocaleString() + ': Render completed successfully');
+    }
+
   });    
 });

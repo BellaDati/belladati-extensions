@@ -5,5 +5,6 @@ This repository contains various extensions for BellaDati Advanced Analytics Fra
 List of extensions:
 
 * [Table Renderer](./table-renderer/)
+* [Customized Table Renderer](./custom-table-renderer/)
 
 Please see [our documentation](http://support.belladati.com/doc/Extensions) for more information about extensions.

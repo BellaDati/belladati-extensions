@@ -1,0 +1,43 @@
+#bd-custom-controls {
+  margin-bottom: 0.5em;
+}
+#bd-custom-controls #bd-custom-link {
+  display: inline;
+}
+#bd-custom-controls #bd-custom-link .disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.6;
+}
+#bd-custom-controls #bd-custom-link button {
+  width: 160px;
+  background-color: #4d94ff;
+  border-color: white;
+  color: white;
+}
+#bd-custom-controls #bd-custom-label {
+  display: inline;
+  margin-left: 1em;
+}
+
+.bd-custom-table {
+  background-color: light-blue;
+  border-collapse: collapse;
+  width: 100%;
+}
+.bd-custom-table, tr, th, td {
+  border: 1px solid white;
+}
+.bd-custom-table thead {
+    background-color: #04415a;
+    color: white;
+}
+.bd-custom-table tbody tr:nth-child(odd) {
+    background-color: #FFE4C4;
+}
+.bd-custom-table tbody tr:nth-child(even) {
+    background-color: #F5F5DC;
+}
+.bd-custom-table td {
+  padding: 4px;
+}
