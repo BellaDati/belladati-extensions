@@ -38,6 +38,7 @@ $(document).ready(function() {
         // insert checkbox into first cell
         var theadCellIndex = 0;
         var checkboxCell = theadRow.insertCell(theadCellIndex++);
+        checkboxCell.style.width = '1em';
         
         // iterate over all cells in a row
         var columns = data.header[i];
@@ -148,6 +149,14 @@ $(document).ready(function() {
         }
       });
       refreshControls();
+
+      // register resizable columns - see https://github.com/alvaro-prieto/colResizable
+      if (#PARAM=enableResizingColumns#) {
+        $(".bd-custom-table").colResizable({
+          fixed:false,
+          liveDrag:true
+        });
+      };
 
       console.log(new Date().toLocaleString() + ': Render completed successfully');
 

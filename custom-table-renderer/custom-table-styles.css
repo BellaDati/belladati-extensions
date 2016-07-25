@@ -29,14 +29,14 @@
   border: 1px solid white;
 }
 .bd-custom-table thead {
-    background-color: #04415a;
-    color: white;
+  background-color: #04415a;
+  color: white;
 }
 .bd-custom-table tbody tr:nth-child(odd) {
-    background-color: #FFE4C4;
+  background-color: #FFE4C4;
 }
 .bd-custom-table tbody tr:nth-child(even) {
-    background-color: #F5F5DC;
+  background-color: #F5F5DC;
 }
 .bd-custom-table td {
   padding: 4px;
